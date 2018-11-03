@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.entity.UserInfo;
 import com.example.service.IUserService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/index")
 public class IndexController {
@@ -17,12 +19,13 @@ public class IndexController {
 
 	@Autowired
 	private StringRedisTemplate template;
-
+	
+	@ApiOperation(value="获取用户详细信息", notes="根据url的id来获取用户详细信息")
 	@RequestMapping("index")
 	public String Index() {
 		return "hello world";
 	}
-
+	@ApiOperation(value="查找用户详细信息", notes="根据find的id来获取用户详细信息")
 	@RequestMapping("find")
 	public Object find() {
 		UserInfo user = new UserInfo();
@@ -31,7 +34,7 @@ public class IndexController {
 		user.setAge(12);
 		return user;
 	}
-
+	@ApiOperation(value="查找所有用户详细信息", notes="根据findAll的id来获取用户详细信息")
 	@RequestMapping("findAll")
 	public Object findAll() {
 
